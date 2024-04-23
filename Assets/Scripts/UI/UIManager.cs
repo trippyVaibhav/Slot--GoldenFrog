@@ -108,14 +108,7 @@ public class UIManager : MonoBehaviour
 
         if (RightBtn) RightBtn.onClick.RemoveAllListeners();
         if (RightBtn) RightBtn.onClick.AddListener(delegate { Slide(+1); });
-        //if (paytableList[0])
-        //{
-        //    LeftBtn.interactable = false;
-        //}
-        //if (paytableList[2])
-        //{
-        //    RightBtn.interactable = false;
-        //}
+      
     }
 
     
