@@ -10454,9 +10454,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 895726569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -360}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 4, y: -900}
   m_SizeDelta: {x: 1664, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973656002
@@ -22375,15 +22375,15 @@ MonoBehaviour:
   mainContainer_RT: {fileID: 1574897783}
   myImages:
   - {fileID: 21300000, guid: 413c97c4409ed4156b93b9ce42d0a599, type: 3}
-  - {fileID: 21300000, guid: a5e4fc10d38c54a7cb5e0603ef35ddf3, type: 3}
-  - {fileID: 21300000, guid: 4a29bd9d5ac7e447985c846db88b5a6a, type: 3}
+  - {fileID: 21300000, guid: a7a41ff05c6aa4ee391884b5db8c1fc6, type: 3}
+  - {fileID: 21300000, guid: 39fb3c66979724139b43a93a353cacd6, type: 3}
   - {fileID: 21300000, guid: 8f2ff6f66ebb7414f9f7df792ada7cbe, type: 3}
   - {fileID: 21300000, guid: 97a9940ddb57d41ffb1bcbf4dd87b14b, type: 3}
-  - {fileID: 21300000, guid: a7a41ff05c6aa4ee391884b5db8c1fc6, type: 3}
+  - {fileID: 21300000, guid: a5e4fc10d38c54a7cb5e0603ef35ddf3, type: 3}
+  - {fileID: 21300000, guid: 4a29bd9d5ac7e447985c846db88b5a6a, type: 3}
   - {fileID: 21300000, guid: 49988a4c03c8f4c62a0b6387948f7953, type: 3}
   - {fileID: 21300000, guid: 3548c1cee1a1344b9b7270ef0631c73c, type: 3}
   - {fileID: 21300000, guid: 2a806e6ecf621492094255001929a924, type: 3}
-  - {fileID: 21300000, guid: 39fb3c66979724139b43a93a353cacd6, type: 3}
   - {fileID: 21300000, guid: 9f5effe28db4840baa1bccb9ba659bdd, type: 3}
   images:
   - slotImages: []

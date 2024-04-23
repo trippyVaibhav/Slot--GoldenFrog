@@ -108,6 +108,14 @@ public class UIManager : MonoBehaviour
 
         if (RightBtn) RightBtn.onClick.RemoveAllListeners();
         if (RightBtn) RightBtn.onClick.AddListener(delegate { Slide(+1); });
+        //if (paytableList[0])
+        //{
+        //    LeftBtn.interactable = false;
+        //}
+        //if (paytableList[2])
+        //{
+        //    RightBtn.interactable = false;
+        //}
     }
 
     
@@ -209,7 +217,10 @@ public class UIManager : MonoBehaviour
             // Move to the next item
             paytableList[CurrentIndex].SetActive(false);
             paytableList[CurrentIndex + 1].SetActive(true);
+           
             CurrentIndex++;
+            
+
         }
         else if (CurrentIndex >= 1 && direction < 0)
         {
@@ -217,8 +228,10 @@ public class UIManager : MonoBehaviour
             // Move to the previous item
             paytableList[CurrentIndex].SetActive(false);
             paytableList[CurrentIndex - 1].SetActive(true);
+
             CurrentIndex--;
-            
+           
+
         }
 
         

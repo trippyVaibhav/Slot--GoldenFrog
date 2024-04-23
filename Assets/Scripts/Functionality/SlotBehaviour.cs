@@ -33,14 +33,6 @@ public class SlotBehaviour : MonoBehaviour
     [SerializeField]
     private Transform[] Slot_Transform;
 
-    [Header("Line Button Objects")]
-    [SerializeField]
-    private List<GameObject> StaticLine_Objects;
-
-    [Header("Line Button Texts")]
-    [SerializeField]
-    private List<TMP_Text> StaticLine_Texts;
-
     private Dictionary<int, string> x_string = new Dictionary<int, string>();
     private Dictionary<int, string> y_string = new Dictionary<int, string>();
 
@@ -78,8 +70,7 @@ public class SlotBehaviour : MonoBehaviour
     private TMP_Text Balance_text;
     [SerializeField]
     private TMP_Text TotalBet_text;
-    [SerializeField]
-    private TMP_Text Lines_text;
+
     [SerializeField]
     private TMP_Text TotalWin_text;
     [SerializeField]
@@ -179,8 +170,7 @@ public class SlotBehaviour : MonoBehaviour
     {
         x_string.Add(LineID, x_value);
         y_string.Add(LineID, y_value);
-        StaticLine_Texts[count].text = LineID.ToString();
-        StaticLine_Objects[count].SetActive(true);
+       
     }
 
     //Generate Static Lines from button hovers
