@@ -67,7 +67,7 @@ public class SlotBehaviour : MonoBehaviour
     private Sprite[] Q_Sprite;
     [SerializeField]
     private Sprite[] Scatter_Sprite;
-    
+
 
     [Header("Miscellaneous UI")]
     [SerializeField]
@@ -84,8 +84,9 @@ public class SlotBehaviour : MonoBehaviour
     //private Sprite AutoSpin_Sprite;
     //[SerializeField]
     //private Image AutoSpin_Image;
-   
+
     [Header("Audio Management")]
+    [SerializeField] private AudioController audioController;
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]
@@ -376,9 +377,10 @@ public class SlotBehaviour : MonoBehaviour
     //starts the spin process
     private void StartSlots(bool autoSpin = false)
     {
-        if (_audioSource) _audioSource.clip = _spinSound;
-        if (_audioSource) _audioSource.loop = true;
-        if (_audioSource) _audioSource.Play();
+        //if (_audioSource) _audioSource.clip = _spinSound;
+        //if (_audioSource) _audioSource.loop = true;
+        //if (_audioSource) _audioSource.Play();
+        if (audioController) audioController.PlayWLAudio("spin");
 
         if (!autoSpin)
         {
@@ -498,10 +500,11 @@ public class SlotBehaviour : MonoBehaviour
         if (LineId.Count > 0)
         {
             int choice = UnityEngine.Random.Range(0, 2);
-            if (_audioSource) _audioSource.Stop();
-            if (_audioSource) _audioSource.loop = false;
-            if (_audioSource) _audioSource.clip = _winSounds[choice];
-            if (_audioSource) _audioSource.Play();
+            //if (_audioSource) _audioSource.Stop();
+            //if (_audioSource) _audioSource.loop = false;
+            //if (_audioSource) _audioSource.clip = _winSounds[choice];
+            //if (_audioSource) _audioSource.Play();
+            if (audioController) audioController.PlayWLAudio("win");
 
             for (int i = 0; i < LineId.Count; i++)
             {
@@ -523,10 +526,12 @@ public class SlotBehaviour : MonoBehaviour
         }
         else
         {
-            if (_audioSource) _audioSource.Stop();
-            if (_audioSource) _audioSource.loop = false;
-            if (_audioSource) _audioSource.clip = _lossSound;
-            if (_audioSource) _audioSource.Play();
+            //if (_audioSource) _audioSource.Stop();
+            //if (_audioSource) _audioSource.loop = false;
+            //if (_audioSource) _audioSource.clip = _lossSound;
+            //if (_audioSource) _audioSource.Play();
+            if (audioController) audioController.PlayWLAudio("lose");
+
         }
     }
 

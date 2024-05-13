@@ -52,15 +52,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button AboutExit_Button;
 
-   
+
 
     [Header("Settings Popup")]
-  
-    private AudioSource BG_Sounds;
-    [SerializeField]
-    private AudioSource Button_Sounds;
-    [SerializeField]
-    private AudioSource Spin_Sounds;
+    [SerializeField] private AudioController audioController;
+    //private AudioSource BG_Sounds;
+    //[SerializeField]
+    //private AudioSource Button_Sounds;
+    //[SerializeField]
+    //private AudioSource Spin_Sounds;
 
    
  
@@ -91,9 +91,10 @@ public class UIManager : MonoBehaviour
         if (Settings_Button) Settings_Button.onClick.RemoveAllListeners();
 
 
-        if (BG_Sounds) BG_Sounds.mute = false;
-        if (Spin_Sounds) Spin_Sounds.mute = false;
-        if (Button_Sounds) Button_Sounds.mute = false;
+        //if (BG_Sounds) BG_Sounds.mute = false;
+        //if (Spin_Sounds) Spin_Sounds.mute = false;
+        //if (Button_Sounds) Button_Sounds.mute = false;
+        if (audioController) audioController.ToggleMute(false, "all");
 
         isMusic = true;
         isSound = true;
@@ -160,6 +161,7 @@ public class UIManager : MonoBehaviour
 
     private void OpenPopup(GameObject Popup)
     {
+        if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(true);
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
         paytableList[CurrentIndex = 0].SetActive(true);
@@ -167,6 +169,7 @@ public class UIManager : MonoBehaviour
 
     private void ClosePopup(GameObject Popup)
     {
+        if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(false);
         if (MainPopup_Object) MainPopup_Object.SetActive(false);
         paytableList[CurrentIndex].SetActive(false);
@@ -178,12 +181,14 @@ public class UIManager : MonoBehaviour
         if(isMusic)
         {
            
-            if (BG_Sounds) BG_Sounds.mute = false;
+            //if (BG_Sounds) BG_Sounds.mute = false;
+            if (audioController) audioController.ToggleMute(false,"bg");
         }
         else
         {
-           
-            if (BG_Sounds) BG_Sounds.mute = true;
+            if (audioController) audioController.ToggleMute(true,"bg");
+
+            //if (BG_Sounds) BG_Sounds.mute = true;
         }
     }
 
@@ -193,20 +198,28 @@ public class UIManager : MonoBehaviour
         if(isSound)
         {
            
-            if (Spin_Sounds) Spin_Sounds.mute = false;
-            if (Button_Sounds) Button_Sounds.mute = false;
+            //if (Spin_Sounds) Spin_Sounds.mute = false;
+            //if (Button_Sounds) Button_Sounds.mute = false;
+            if (audioController) audioController.ToggleMute(false, "button");
+            if (audioController) audioController.ToggleMute(false, "wl");
+
         }
         else
         {
             
-            if (Spin_Sounds) Spin_Sounds.mute = true;
-            if (Button_Sounds) Button_Sounds.mute = true;
+            //if (Spin_Sounds) Spin_Sounds.mute = true;
+            //if (Button_Sounds) Button_Sounds.mute = true;
+            if (audioController) audioController.ToggleMute(false, "button");
+            if (audioController) audioController.ToggleMute(false, "wl");
         }
     }
     private void Slide(int direction)
     {
+
         if (CurrentIndex < paytableList.Length - 1 && direction > 0)
         {
+            if (audioController) audioController.PlayButtonAudio();
+
             // Move to the next item
             paytableList[CurrentIndex].SetActive(false);
             paytableList[CurrentIndex + 1].SetActive(true);
@@ -217,7 +230,8 @@ public class UIManager : MonoBehaviour
         }
         else if (CurrentIndex >= 1 && direction < 0)
         {
-            
+        if (audioController) audioController.PlayButtonAudio();
+
             // Move to the previous item
             paytableList[CurrentIndex].SetActive(false);
             paytableList[CurrentIndex - 1].SetActive(true);
