@@ -75,7 +75,8 @@ public class SlotBehaviour : MonoBehaviour
     private TMP_Text Balance_text;
     [SerializeField]
     private TMP_Text TotalBet_text;
-
+    [SerializeField]
+    private Button MaxBet_Button;
     [SerializeField]
     private TMP_Text TotalWin_text;
 
@@ -137,6 +138,9 @@ public class SlotBehaviour : MonoBehaviour
 
         if (AutoSpinStop_Button) AutoSpinStop_Button.onClick.RemoveAllListeners();
         if (AutoSpinStop_Button) AutoSpinStop_Button.onClick.AddListener(StopAutoSpin);
+
+        if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
+        if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
     }
 
     private void AutoSpin()
@@ -198,6 +202,14 @@ public class SlotBehaviour : MonoBehaviour
             StopCoroutine(StopAutoSpinCoroutine());
         }
     }
+
+    private void MaxBet()
+    {
+        if (audioController) audioController.PlayButtonAudio();
+        BetCounter = SocketManager.initialData.Bets.Count - 1;
+        if (TotalBet_text) TotalBet_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
+    }
+
     //Fetch Lines from backend
     internal void FetchLines(string LineVal, int count)
     {
@@ -289,6 +301,8 @@ public class SlotBehaviour : MonoBehaviour
     //function to populate animation sprites accordingly
     private void PopulateAnimationSprites(ImageAnimation animScript, int val)
     {
+        animScript.textureArray.Clear();
+        animScript.textureArray.TrimExcess();
         switch (val)
         {
             case 0:
