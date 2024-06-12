@@ -78,7 +78,13 @@ public class SlotBehaviour : MonoBehaviour
     [SerializeField]
     private Button MaxBet_Button;
     [SerializeField]
+    private Button BetPlus_Button;
+    [SerializeField]
+    private Button BetMinus_Button;
+    [SerializeField]
     private TMP_Text TotalWin_text;
+    [SerializeField]
+    private TMP_Text BetPerLine_text;
 
     [Header("Audio Management")]
     [SerializeField] private AudioController audioController;
@@ -138,6 +144,11 @@ public class SlotBehaviour : MonoBehaviour
 
         if (AutoSpinStop_Button) AutoSpinStop_Button.onClick.RemoveAllListeners();
         if (AutoSpinStop_Button) AutoSpinStop_Button.onClick.AddListener(StopAutoSpin);
+
+        if (BetPlus_Button) BetPlus_Button.onClick.RemoveAllListeners();
+        if (BetPlus_Button) BetPlus_Button.onClick.AddListener(delegate { OnBetOne(true); });
+        if (BetMinus_Button) BetMinus_Button.onClick.RemoveAllListeners();
+        if (BetMinus_Button) BetMinus_Button.onClick.AddListener(delegate { OnBetOne(false); });
 
         if (MaxBet_Button) MaxBet_Button.onClick.RemoveAllListeners();
         if (MaxBet_Button) MaxBet_Button.onClick.AddListener(MaxBet);
@@ -201,6 +212,45 @@ public class SlotBehaviour : MonoBehaviour
             AutoSpinRoutine = null;
             StopCoroutine(StopAutoSpinCoroutine());
         }
+    }
+
+    void OnBetOne(bool IncDec)
+    {
+        if (audioController) audioController.PlayButtonAudio();
+
+        if (BetCounter < SocketManager.initialData.Bets.Count - 1)
+        {
+            BetCounter++;
+        }
+        else
+        {
+            BetCounter = 0;
+        }
+        Debug.Log("Index:" + BetCounter);
+
+        if (TotalBet_text) TotalBet_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
+        if (BetPerLine_text) BetPerLine_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
+    }
+
+    private void ChangeBet(bool IncDec)
+    {
+        if (audioController) audioController.PlayButtonAudio();
+        if (IncDec)
+        {
+            if (BetCounter < SocketManager.initialData.Bets.Count - 1)
+            {
+                BetCounter++;
+            }
+        }
+        else
+        {
+            if (BetCounter > 0)
+            {
+                BetCounter--;
+            }
+        }
+
+        if (TotalBet_text) TotalBet_text.text = SocketManager.initialData.Bets[BetCounter].ToString();
     }
 
     private void MaxBet()
@@ -474,7 +524,7 @@ public class SlotBehaviour : MonoBehaviour
     }
     internal void CallCloseSocket()
     {
-        SocketManager.CloseWebSocket();
+        SocketManager.CloseSocket();
     }
     void ToggleButtonGrp(bool toggle)
     {
